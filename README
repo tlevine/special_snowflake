@@ -1,0 +1,5 @@
+Find primary keys in datasets. ::
+
+    from pprint import pprint
+    with open('open-data-index.csv') as fp:
+        pprint(snowflake(csv.DictReader(fp), n_columns = 2, only_adjacent = False))

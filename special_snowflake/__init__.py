@@ -25,13 +25,13 @@ def snowflake(data, n_columns = 3, only_adjacent = True):
             hashes = {columns:set() for columns in itertools.combinations(row.keys(), n_columns)}
 
         for columns in hashes:
-            hashes[columns].add(multicol_hash(row, columns))
+            hashes[columns].add(_multicol_hash(row, columns))
 
         nrow += 1
 
     return {columns:len(hashes[columns]) == nrow for columns in hashes}
 
-def multicol_hash(row, columns):
+def _multicol_hash(row, columns):
     return hash(tuple((row[column] for column in columns)))
 
 def main():
