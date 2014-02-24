@@ -1,6 +1,7 @@
 import csv
 import json
 import itertools
+from sliding_window import window
 
 def fromdicts(header, data, n_columns = 3, only_adjacent = True):
     '''
@@ -16,8 +17,8 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
     '''
     if only_adjacent:
         f = itertools.combinations
-    if only_adjacent != False:
-        raise NotImplementedError
+    else:
+        f = lambda x: window(x, n = n_columns)
 
     hashes = {columns:set() for columns in f(header, n_columns)}
     nrow = 0
