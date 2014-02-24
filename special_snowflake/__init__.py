@@ -14,10 +14,12 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
     Returns:
         dict with boolean values
     '''
+    if only_adjacent:
+        f = itertools.combinations
     if only_adjacent != False:
         raise NotImplementedError
 
-    hashes = {columns:set() for columns in itertools.combinations(header, n_columns)}
+    hashes = {columns:set() for columns in f(header, n_columns)}
     nrow = 0
     for row in data:
         for columns in hashes:
