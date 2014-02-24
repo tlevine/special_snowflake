@@ -16,9 +16,9 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
         dict with boolean values
     '''
     if only_adjacent:
-        f = itertools.combinations
-    else:
         f = window
+    else:
+        f = itertools.combinations
 
     hashes = {columns:set() for columns in f(header, n_columns)}
     nrow = 0
