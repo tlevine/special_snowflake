@@ -7,5 +7,5 @@ def separate_fp(fp, *args, **kwargs):
     return header, data
 
 def fromcsv(fp, *args, **kwargs):
-    header, data = separate_fp(fp)
+    header, data = separate_fp(fp, *args, **kwargs)
     return fromdicts(header, data)
