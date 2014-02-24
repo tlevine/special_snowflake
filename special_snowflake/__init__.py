@@ -12,9 +12,19 @@ def snowflake(i, columns = 3, only_adjacent = True):
     Returns:
         dict with boolean values
     '''
-    if columns != 1:
+    if columns != 1 or only_adjacent != False:
         raise NotImplementedError
+
+    for row in i:
+        if
+
+def potential_keys(column_names, width):
+    '''
+    Args:
+        column_names: list of key
+        width: an integer
+    '''
 
 def main():
     with open('open-data-index.csv') as fp:
-        print(snowflake(csv.DictReader(fp)))
+        print(snowflake(csv.DictReader(fp), columns = 1, only_adjacent = False))
