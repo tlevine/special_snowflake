@@ -1,9 +1,9 @@
 import csv
 import json
 
-def separate_fp(fp):
-    header = next(csv.reader(fp))
-    data = csv.DictReader(fp)
+def separate_fp(fp, *args, **kwargs):
+    header = next(csv.reader(fp, *args, **kwargs))
+    data = csv.DictReader(fp, *args, **kwargs)
     return header, data
 
 def fromcsv(fp, *args, **kwargs):
