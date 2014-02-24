@@ -17,18 +17,12 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
     if only_adjacent != False:
         raise NotImplementedError
 
-    hashes = None
+    hashes = {columns:set() for columns in itertools.combinations(header, n_columns)}
     nrow = 0
     for row in data:
-        # First row only
-        if hashes == None:
-            hashes = {columns:set() for columns in itertools.combinations(row.keys(), n_columns)}
-
         for columns in hashes:
             hashes[columns].add(_multicol_hash(row, columns))
-
         nrow += 1
-
     return set(k for k,v in hashes.items() if len(v) == nrow)
 
 def fromcsv(fn, *args, **kwargs):
