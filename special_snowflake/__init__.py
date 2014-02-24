@@ -18,7 +18,7 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
     if only_adjacent:
         f = itertools.combinations
     else:
-        f = lambda x: window(x, n = n_columns)
+        f = window
 
     hashes = {columns:set() for columns in f(header, n_columns)}
     nrow = 0
