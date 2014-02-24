@@ -28,12 +28,14 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
         nrow += 1
     return set(k for k,v in hashes.items() if len(v) == nrow)
 
-def fromcsv(fn, *args, **kwargs):
-    with open(fn, 'r') as fp:
-        header = next(csv.reader(fp))
-        data = csv.DictReader(fp)
-        out = fromdicts(header, data)
-    return out
+def separate_fp(fp):
+    header = next(csv.reader(fp))
+    data = csv.DictReader(fp)
+    return header, data
+
+def fromcsv(fp, *args, **kwargs):
+    header, data = separate_fp(fp)
+    return fromdicts(header, data)
 
 def _multicol_hash(row, columns):
     return hash(tuple((row[column] for column in columns)))
