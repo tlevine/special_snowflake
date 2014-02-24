@@ -1,9 +1,10 @@
 import nose.tools as n
 import special_snowflake
+import special_snowflake._snowflake
 
 def test_multicol_hash():
     row = {'a':8,'b':3,'c':10}
-    observed = special_snowflake._multicol_hash(row, ('a','b'))
+    observed = special_snowflake._snowflake.multicol_hash(row, ('a','b'))
     expected = hash((8,3))
     n.assert_equal(observed, expected)
 
