@@ -12,13 +12,24 @@ data = [
     {'a':88,'b': 1,'c':10,'d': 8},
     {'a':8, 'b':23,'c':10,'d': 8},
 ]
+headers = ('a','b','c','d')
 
 def test_snowflake_1_adjacent():
-    observed = special_snowflake.snowflake(data, n_columns = 1, only_adjacent = True)
+    observed = special_snowflake.fromdicts(headers, data, n_columns = 1, only_adjacent = True)
     expected = {('b',)}
     n.assert_set_equal(observed, expected)
 
 def test_snowflake_1_nonadjacent():
-    observed = special_snowflake.snowflake(data, n_columns = 1, only_adjacent = False)
+    observed = special_snowflake.fromdicts(headers, data, n_columns = 1, only_adjacent = False)
     expected = {('b',)}
+    n.assert_set_equal(observed, expected)
+
+def test_snowflake_2_adjacent():
+    observed = special_snowflake.fromdicts(headers, data, n_columns = 2, only_adjacent = True)
+    expected = {('b',),('a','b'),}
+    n.assert_set_equal(observed, expected)
+
+def test_snowflake_2_nonadjacent():
+    observed = special_snowflake.fromdicts(headers, data, n_columns = 2, only_adjacent = False)
+    expected = {('b',),('a','b'),('b','d'),('a','c')}
     n.assert_set_equal(observed, expected)

@@ -2,7 +2,7 @@ import csv
 import json
 import itertools
 
-def snowflake(data, n_columns = 3, only_adjacent = True):
+def fromdicts(headers, data, n_columns = 3, only_adjacent = True):
     '''
     Given an iterable of dicts, find the keys that are primary keys across the dicts.
 
