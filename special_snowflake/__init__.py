@@ -29,15 +29,7 @@ def snowflake(data, n_columns = 3, only_adjacent = True):
 
         nrow += 1
 
-    return {columns:len(hashes[columns]) == nrow for columns in hashes}
+    return set(k for k,v in hashes.items() if len(v) == nrow)
 
 def _multicol_hash(row, columns):
     return hash(tuple((row[column] for column in columns)))
-
-def main():
-    from pprint import pprint
-    with open('open-data-index.csv') as fp:
-        pprint(snowflake(csv.DictReader(fp), n_columns = 2, only_adjacent = False))
-
-if __name__ == '__main__':
-    main()
