@@ -29,12 +29,13 @@ def snowflake(data, n_columns = 3, only_adjacent = True):
 
         nrow += 1
 
+    print(hashes)
     for columns in hashes:
         if len(hashes[columns]) == nrow:
             yield columns
 
 def multicol_hash(row, columns):
-    tuple((row[column] for column in columns))
+    return hash(tuple((row[column] for column in columns)))
 
 def main():
     with open('open-data-index.csv') as fp:
