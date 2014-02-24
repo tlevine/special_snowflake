@@ -26,10 +26,10 @@ def test_snowflake_1_nonadjacent():
 
 def test_snowflake_2_adjacent():
     observed = special_snowflake.fromdicts(headers, data, n_columns = 2, only_adjacent = True)
-    expected = {('b',),('a','b'),}
+    expected = {('a','b'),('b','c'),}
     n.assert_set_equal(observed, expected)
 
 def test_snowflake_2_nonadjacent():
     observed = special_snowflake.fromdicts(headers, data, n_columns = 2, only_adjacent = False)
-    expected = {('b',),('a','b'),('b','d'),('a','c')}
+    expected = {('a','b'),('b','c'),('b','d'),('a','c')}
     n.assert_set_equal(observed, expected)
