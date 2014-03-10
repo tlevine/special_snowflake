@@ -5,9 +5,16 @@ import nose.tools as n
 from special_snowflake.api import fromdicts, fromcsv
 import special_snowflake.test.fixtures as f
 
-def test_fromdicts():
-    observed = fromdicts(f.headers, f.data, only_adjacent = True)
-    assert False, observed
+def test_fromdicts_defaults():
+    observed = fromdicts(f.headers, f.data)
+    expected = {('b', 'c', 'd'), ('a', 'b', 'c')}
+    n.assert_equal(observed, expected)
+
+    observed = fromdicts(f.headers, f.data, n_columns = 3, only_adjacent = True)
+    expected = {('b', 'c', 'd'), ('a', 'b', 'c')}
+    n.assert_equal(observed, expected)
+
+def test_fromcsv_defaults():
 
 @n.nottest
 def test_fromcsv_comma():
