@@ -1,7 +1,7 @@
 from itertools import combinations
 from sliding_window import window
 
-def fromdicts(header, data, n_columns = 3, only_adjacent = True):
+def _fromdicts(header, data, n_columns, only_adjacent):
     '''
     Given an iterable of dicts, find the keys that are primary keys across the dicts.
 

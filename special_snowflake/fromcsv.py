@@ -1,7 +1,7 @@
 import csv
 import json
 
-from special_snowflake._snowflake import fromdicts as _fromdicts
+from special_snowflake._snowflake import _fromdicts
 
 def _separate_fp(fp, *args, **kwargs):
     '''
@@ -13,6 +13,6 @@ def _separate_fp(fp, *args, **kwargs):
     data = csv.DictReader(fp, *args, **kwargs)
     return header, data
 
-def fromcsv(fp, *args, n_columns = 3, only_adjacent = True, **kwargs, fromdicts = _fromdicts):
-    header, data = separate_fp(fp, *args, **kwargs)
-    return _fromdicts(header, data, n_columns = n_columns, only_adjacent = only_adjacent)
+def _fromcsv(fp, fromdicts, n_columns, only_adjacent, csv_args, csv_kwargs):
+    header, data = separate_fp(fp, *csv_args, **csv_kwargs)
+    return fromdicts(header, data, n_columns, only_adjacent)
