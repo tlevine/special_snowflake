@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from distutils.core import setup
 
 setup(name='special_snowflake',
@@ -11,6 +12,6 @@ setup(name='special_snowflake',
     packages=['special_snowflake'],
     install_requires = ['sliding_window'],
     tests_require = ['nose'],
-    version='0.0.1',
+    version='0.0.2',
     license='AGPL',
 )
