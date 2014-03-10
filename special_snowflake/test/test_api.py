@@ -17,7 +17,7 @@ def test_fromdicts_defaults():
 
 def test_fromcsv_defaults():
     with open(os.path.join('special_snowflake','test','fixtures','carte-des-licencies-sportifs-dans-les-hauts-de-seine.csv'), 'r') as fp:
-        observed = fromcsv(fp)
+        observed = fromcsv(fp, n_columns = 3, only_adjacent = True, delimiter = ';')
     assert False, observed
     n.assert_set_equal(observed, expected)
 
