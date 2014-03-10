@@ -10,6 +10,3 @@ def _separate_fp(fp, *args, **kwargs):
     header = next(csv.reader(fp, *args, **kwargs))
     data = csv.DictReader(fp, *args, **kwargs)
     return header, data
-
-def _fromcsv(separate_fp, fp, csv_kwargs):
-    return separate_fp(fp, **csv_kwargs)
