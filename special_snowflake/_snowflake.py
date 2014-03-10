@@ -11,7 +11,7 @@ def fromdicts(header, data, n_columns = 3, only_adjacent = True):
         only_adjacent: If this is true, I'll assume that columns in a primary key must be adjacent.
 
     Returns:
-        dict with boolean values
+        set of primary keys
     '''
     if only_adjacent:
         f = window
