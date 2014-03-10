@@ -3,13 +3,7 @@ from io import StringIO
 import nose.tools as n
 
 from special_snowflake.fromdicts import _fromdicts, multicol_hash
-
-data = [
-    {'a':8, 'b': 3,'c':13,'d': 8},
-    {'a':88,'b': 1,'c':10,'d': 8},
-    {'a':8, 'b':23,'c':10,'d': 8},
-]
-headers = ('a','b','c','d')
+from special_snowflake.test.fixtures import data, headers
 
 def test_multicol_hash():
     row = {'a':8,'b':3,'c':10}
