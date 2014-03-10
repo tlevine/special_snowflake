@@ -2,9 +2,7 @@ from io import StringIO
 
 import nose.tools as n
 
-import special_snowflake
-import special_snowflake._snowflake
-import special_snowflake._load
+from special_snowflake.fromdicts import _fromdicts, multicol_hash
 
 data = [
     {'a':8, 'b': 3,'c':13,'d': 8},
@@ -15,54 +13,32 @@ headers = ('a','b','c','d')
 
 def test_multicol_hash():
     row = {'a':8,'b':3,'c':10}
-    observed = special_snowflake._snowflake.multicol_hash(row, ('a','b'))
+    observed = multicol_hash(row, ('a','b'))
     expected = hash((8,3))
     n.assert_equal(observed, expected)
 
 def test_multicol_hash_on_missing_key():
     row = {'a':8,'b':3,'c':10}
-    observed = special_snowflake._snowflake.multicol_hash(row, ('a','d'))
+    observed = multicol_hash(row, ('a','d'))
     expected = hash((8,None))
     n.assert_equal(observed, expected)
 
 def test_snowflake_1_adjacent():
-    observed = special_snowflake.fromdicts(headers, data, n_columns = 1, only_adjacent = True)
+    observed = _fromdicts(headers, data, 1, True)
     expected = {('b',)}
     n.assert_set_equal(observed, expected)
 
 def test_snowflake_1_nonadjacent():
-    observed = special_snowflake.fromdicts(headers, data, n_columns = 1, only_adjacent = False)
+    observed = _fromdicts(headers, data, 1, False)
     expected = {('b',)}
     n.assert_set_equal(observed, expected)
 
 def test_snowflake_2_adjacent():
-    observed = special_snowflake.fromdicts(headers, data, n_columns = 2, only_adjacent = True)
+    observed = _fromdicts(headers, data, 2, True)
     expected = {('a','b'),('b','c'),}
     n.assert_set_equal(observed, expected)
 
 def test_snowflake_2_nonadjacent():
-    observed = special_snowflake.fromdicts(headers, data, n_columns = 2, only_adjacent = False)
+    observed = _fromdicts(headers, data, 2, False)
     expected = {('a','b'),('b','c'),('b','d'),('a','c')}
-    n.assert_set_equal(observed, expected)
-
-def test_fromcsv_comma():
-    fp = StringIO('''color,shape,meows\r
-pink,square,no\r
-green,square,no\r
-yellow,cat,yes\r
-''')
-    fp.seek(0)
-    observed = special_snowflake._load.fromcsv(fp)
-    expected = {('color',)}
-    n.assert_set_equal(observed, expected)
-
-def test_fromcsv_semicolon():
-    fp = StringIO('''color;shape;meows
-pink;square;no
-green;square;no
-yellow;square;yes
-''')
-    fp.seek(0)
-    observed = special_snowflake._load.fromcsv(fp, delimiter = ';', n_columns = 1)
-    expected = {('color',)}
     n.assert_set_equal(observed, expected)
