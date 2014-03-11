@@ -27,4 +27,4 @@ def _fromdicts(header, data, n_columns, only_adjacent):
     return set(k for k,v in hashes.items() if len(v) == nrow)
 
 def multicol_hash(row, columns):
-    return hash(tuple(row[column] for column in columns))
+    return hash(tuple(row[column] for column in columns if column != None))

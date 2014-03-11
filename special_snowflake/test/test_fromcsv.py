@@ -28,5 +28,6 @@ def test_separate_fp():
 def test_empty_cells():
     fn = 'budget_2011_par_secteurs_-_autorisations_de_programme_ap.csv'
     with open(os.path.join('special_snowflake','test','fixtures',fn)) as fp:
-        observed = fromcsv(fp, n_columns = 3, only_adjacent = True, delimiter = ';')
-    n.assert_set_equal(observed, set())
+        observed = fromcsv(fp, n_columns = 2, only_adjacent = True, delimiter = ';')
+    n.assert_set_equal(observed, {'libelle_secteur', 'montant_vote_en_meu'}))
+
