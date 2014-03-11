@@ -11,6 +11,7 @@ def test_multicol_hash():
     expected = hash((8,3))
     n.assert_equal(observed, expected)
 
+@n.nottest
 def test_multicol_hash_on_missing_key():
     row = {'a':8,'b':3,'c':10}
     observed = multicol_hash(row, ('a','d'))
