@@ -3,7 +3,7 @@ from io import StringIO
 
 import nose.tools as n
 
-from special_snowflake.api import fromdicts, fromcsv
+from special_snowflake import fromdicts, fromcsv
 import special_snowflake.test.fixtures as f
 
 def test_fromdicts_defaults():
