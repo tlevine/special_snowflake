@@ -1,4 +1,5 @@
 import os
+from io import StringIO
 import nose.tools as n
 n.assert_dict_equal.__self__.maxDiff = None
 
@@ -36,3 +37,7 @@ def test_big_window():
     with open(os.path.join('special_snowflake','test','fixtures',fn)) as fp:
         with n.assert_raises(ValueError):
             fromcsv(fp, n_columns = 8, delimiter = ';')
+
+def test_empty_csv():
+    fp = StringIO('')
+    n.assert_set_equal(fromcsv(fp), set())
