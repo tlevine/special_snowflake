@@ -2,6 +2,7 @@ import os
 import nose.tools as n
 
 from special_snowflake.fromcsv import _separate_fp
+from special_snowflake import fromcsv
 
 def test_separate_fp():
     expected_header = [
@@ -22,3 +23,9 @@ def test_separate_fp():
         firstrow = next(data)
     n.assert_list_equal(header, expected_header)
     n.assert_dict_equal(firstrow, dict(zip(expected_header, expected_firstrow_values)))
+
+def test_empty_cells():
+    fn = 'budget_2011_par_secteurs_-_autorisations_de_programme_ap.csv'
+    with open(os.path.join('special_snowflake','test','fixtures',fn)) as fp:
+        observed = fromcsv(fp, n_columns = 3, only_adjacent = True, delimiter = ';')
+    n.assert_set_equal(observed, set())
