@@ -13,6 +13,9 @@ def _fromdicts(header, data, n_columns, only_adjacent):
     Returns:
         set of primary keys
     '''
+    if len(header) < n_columns:
+        raise ValueError('This dataset doesn\'t have enough columns! (%d is less than %d.)' % (len(header), n_columns))
+
     if only_adjacent:
         f = window
     else:
