@@ -15,20 +15,8 @@ def test_fromdicts_defaults():
     expected = {('b', 'c', 'd'), ('a', 'b', 'c')}
     n.assert_equal(observed, expected)
 
-def test_fromcsv_defaults():
-    with open(os.path.join('special_snowflake','test','fixtures','carte-des-licencies-sportifs-dans-les-hauts-de-seine.csv'), 'r') as fp:
-        observed = fromcsv(fp, n_columns = 3, only_adjacent = True, delimiter = ';')
-    assert False, observed
-    n.assert_set_equal(observed, expected)
-
 @n.nottest
 def test_fromcsv_semicolon():
-    fp = StringIO('''color;shape;meows
-pink;square;no
-green;square;no
-yellow;square;yes
-''')
-    fp.seek(0)
-    observed = fromcsv(fp, delimiter = ';', n_columns = 1)
-    expected = {('color',)}
+    with open(os.path.join('special_snowflake','test','fixtures','carte-des-licencies-sportifs-dans-les-hauts-de-seine.csv'), 'r') as fp:
+        observed = fromcsv(fp, n_columns = 3, only_adjacent = True, delimiter = ';')
     n.assert_set_equal(observed, expected)
