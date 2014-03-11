@@ -7,7 +7,8 @@ def _separate_fp(fp, *args, **kwargs):
         list of field names
         csv.DictReader
     '''
+    position = fp.tell()
     header = next(csv.reader(fp, *args, **kwargs))
-    fp.seek(0)
+    fp.seek(position)
     data = csv.DictReader(fp, *args, **kwargs)
     return header, data
