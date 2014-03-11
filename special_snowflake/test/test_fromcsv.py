@@ -1,5 +1,6 @@
 import os
 import nose.tools as n
+n.assert_dict_equal.__self__.maxDiff = None
 
 from special_snowflake.fromcsv import _separate_fp
 from special_snowflake import fromcsv

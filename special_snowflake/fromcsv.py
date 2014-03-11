@@ -10,5 +10,10 @@ def _separate_fp(fp, *args, **kwargs):
     position = fp.tell()
     header = next(csv.reader(fp, *args, **kwargs))
     fp.seek(position)
-    data = csv.DictReader(fp, *args, **kwargs)
+
+    _kwargs = dict(kwargs)
+    _kwargs['fieldnames'] = _kwargs.get('fieldnames', header)
+    _kwargs['restval'] = _kwargs.get('restval', '')
+    data = csv.DictReader(fp, *args, **_kwargs)
+    next(data) # skip the header
     return header, data
