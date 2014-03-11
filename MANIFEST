@@ -2,6 +2,6 @@
 README
 setup.py
 special_snowflake/__init__.py
-special_snowflake/_load.py
-special_snowflake/_snowflake.py
-special_snowflake/test.py
+special_snowflake/api.py
+special_snowflake/fromcsv.py
+special_snowflake/fromdicts.py

@@ -14,6 +14,6 @@ setup(name='special_snowflake',
     packages = ['special_snowflake'],
     install_requires = ['sliding_window'],
     tests_require = ['nose'],
-    version = s.__version,
+    version = s.__version__,
     license = 'AGPL',
 )
