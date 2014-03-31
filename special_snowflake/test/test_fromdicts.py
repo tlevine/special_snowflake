@@ -6,20 +6,17 @@ import nose.tools as n
 from special_snowflake.fromdicts import _fromdicts, multicol_hash, _fromdicts_duplicates, _dedupe, _factorial
 from special_snowflake.test.fixtures import data, data2, headers
 
-@n.nottest
 def test_multicol_hash():
     row = {'a':8,'b':3,'c':10}
     observed = multicol_hash(row, ('a','b'))
     expected = hash((8,3))
     n.assert_equal(observed, expected)
 
-@n.nottest
 def test_snowflake_1_adjacent():
     observed = _fromdicts_duplicates(headers, data, 1, True)
     expected = {('b',)}
     n.assert_set_equal(observed, expected)
 
-@n.nottest
 def test_snowflake_1_nonadjacent():
     observed = _fromdicts_duplicates(headers, data, 1, False)
     expected = {('b',)}
