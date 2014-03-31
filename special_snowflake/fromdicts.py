@@ -40,7 +40,7 @@ def _dedupe(indices:set) -> set:
     for ncol in range(1, max(map(len, indices))):
         for columns in indices:
             if len(columns) == ncol:
-                for subcolumns in combinations(columns):
+                for subcolumns in combinations(columns, ncol):
                     if subcolumns in result:
                         break
                 else:
