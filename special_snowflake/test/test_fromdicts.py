@@ -11,13 +11,6 @@ def test_multicol_hash():
     expected = hash((8,3))
     n.assert_equal(observed, expected)
 
-@n.nottest
-def test_multicol_hash_on_missing_key():
-    row = {'a':8,'b':3,'c':10}
-    observed = multicol_hash(row, ('a','d'))
-    expected = hash((8,None))
-    n.assert_equal(observed, expected)
-
 def test_snowflake_1_adjacent():
     observed = _fromdicts(headers, data, 1, True)
     expected = {('b',)}
