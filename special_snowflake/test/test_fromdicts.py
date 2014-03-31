@@ -44,13 +44,12 @@ def test_all():
     expected = {('a',),('c','d',)}
     n.assert_set_equal(observed, expected)
 
-@n.nottest
 def test_dedupe():
     observed = _dedupe({('a',),
         ('a','b'),('b','c'), ('a','c'),
         ('a','b','c'),
     })
-    expected = {('a'), ('b','c')}
+    expected = {('a',), ('b','c')}
     n.assert_set_equal(observed, expected)
 
 def test_factorial():
