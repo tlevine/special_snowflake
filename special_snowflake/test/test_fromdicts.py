@@ -22,16 +22,14 @@ def test_snowflake_1_nonadjacent():
     expected = {('b',)}
     n.assert_set_equal(observed, expected)
 
-@n.nottest
 def test_snowflake_2_adjacent():
     observed = _fromdicts_duplicates(headers, data, 2, True)
-    expected = {('a','b'),('b','c'),}
+    expected = {('b',),('a','b'),('b','c'),}
     n.assert_set_equal(observed, expected)
 
-@n.nottest
 def test_snowflake_2_nonadjacent():
     observed = _fromdicts_duplicates(headers, data, 2, False)
-    expected = {('a','b'),('b','c'),('b','d'),('a','c')}
+    expected = {('b',),('a','b'),('b','c'),('b','d'),('a','c')}
     n.assert_set_equal(observed, expected)
 
 @n.nottest
