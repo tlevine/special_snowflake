@@ -44,6 +44,7 @@ def test_all():
     expected = {('a',),('c','d',)}
     n.assert_set_equal(observed, expected)
 
+@n.nottest
 def test_dedupe():
     observed = _dedupe({('a',),
         ('a','b'),('b','c'), ('a','c'),
@@ -53,6 +54,6 @@ def test_dedupe():
     n.assert_set_equal(observed, expected)
 
 def test_factorial():
-    observed = list(_factorial(combinations, [1,2,3], 2))
-    expected = [(1,),(2,),(3,),(1,2),(2,3),(1,3)]
-    n.assert_list_equal(observed, expected)
+    observed = set(_factorial(combinations, [1,2,3], 2))
+    expected = {(1,),(2,),(3,),(1,2),(2,3),(1,3)}
+    n.assert_set_equal(observed, expected)
