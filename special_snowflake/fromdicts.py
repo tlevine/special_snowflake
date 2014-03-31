@@ -13,6 +13,9 @@ def _fromdicts(header, data, n_columns, only_adjacent):
     Returns:
         set of primary keys
     '''
+    return _dedupe(_fromdicts_duplicates(header, data, n_columns, only_adjacent))
+
+def _fromdicts_duplicates(header, data, n_columns, only_adjacent):
     if len(header) < n_columns:
         raise ValueError('This dataset doesn\'t have enough columns! (%d is less than %d.)' % (len(header), n_columns))
 
@@ -28,6 +31,21 @@ def _fromdicts(header, data, n_columns, only_adjacent):
             hashes[columns].add(multicol_hash(row, columns))
         nrow += 1
     return set(k for k,v in hashes.items() if len(v) == nrow)
+
+def _dedupe(indices:set) -> set:
+    '''
+    Remove complex indices when simpler equivalents exist.
+    '''
+    result = set()
+    for ncol in range(1, max(map(len, indices))):
+        for columns in indices:
+            if len(columns) == ncol:
+                for subcolumns in combinations(columns):
+                    if subcolumns in result:
+                        break
+                else:
+                    result.add(columns)
+    return result
 
 def multicol_hash(row, columns):
     return hash(tuple(row[column] for column in columns if column != None))
