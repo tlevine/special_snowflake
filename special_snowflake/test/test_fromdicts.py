@@ -32,7 +32,6 @@ def test_snowflake_2_nonadjacent():
     expected = {('b',),('a','b'),('b','c'),('b','d'),('a','c')}
     n.assert_set_equal(observed, expected)
 
-@n.nottest
 def test_all():
     'Multi-column keys should not be returned if there are simpler keys within the same columns.'
     observed = _fromdicts(headers, data2, 2, False)
