@@ -4,7 +4,7 @@ import pickle
 
 import nose.tools as n
 
-from special_snowflake import fromdicts, fromcsv
+from special_snowflake import fromdicts, fromcsv, fromresponse
 import special_snowflake.test.fixtures as f
 
 def test_fromdicts_defaults():
@@ -30,6 +30,6 @@ def test_fromresponse():
     path = os.path.join('special_snowflake','test','fixtures','carte-des-licencies-sportifs-dans-les-hauts-de-seine.p')
     with open(path, 'rb') as fp:
         response = pickle.load(fp)
-    observed = fromcsv(response, delimiter = ';', n_columns = 1)
+    observed = fromresponse(response, delimiter = ';', n_columns = 1)
     expected = {('color',)}
     n.assert_set_equal(observed, expected)
