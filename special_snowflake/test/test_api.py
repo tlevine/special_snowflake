@@ -8,11 +8,11 @@ import special_snowflake.test.fixtures as f
 
 def test_fromdicts_defaults():
     observed = fromdicts(f.headers, f.data)
-    expected = {('b',),('b', 'c', 'd'), ('a', 'b', 'c')}
+    expected = {('b',),('a','c')}
     n.assert_equal(observed, expected)
 
-    observed = fromdicts(f.headers, f.data, n_columns = 3, only_adjacent = True)
-    expected = {('b',),('b', 'c', 'd'), ('a', 'b', 'c')}
+    observed = fromdicts(f.headers, f.data, n_columns = 3, only_adjacent = False)
+    expected = {('b',),('a','c')}
     n.assert_equal(observed, expected)
 
 def test_fromcsv_semicolon():
