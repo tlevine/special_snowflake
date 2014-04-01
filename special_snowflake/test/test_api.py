@@ -38,7 +38,11 @@ def test_fromresponse():
     with open(path, 'rb') as fp:
         response = pickle.load(fp)
     observed = fromresponse(response, delimiter = ';', n_columns = 1)
-    expected = {('color',)}
+    expected = {}
+    n.assert_set_equal(observed, expected)
+
+    observed = fromresponse(response, delimiter = ';', n_columns = 3)
+    expected = {}
     n.assert_set_equal(observed, expected)
 
 def test_fromresponse():
@@ -46,5 +50,9 @@ def test_fromresponse():
     with open(path, 'rb') as fp:
         response = pickle.load(fp)
     observed = fromresponse(response, delimiter = ';', n_columns = 1)
-    expected = {('color',)}
+    expected = {}
+    n.assert_set_equal(observed, expected)
+
+    observed = fromresponse(response, delimiter = ';', n_columns = 3)
+    expected = {}
     n.assert_set_equal(observed, expected)
