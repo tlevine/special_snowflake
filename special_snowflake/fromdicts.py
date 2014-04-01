@@ -42,7 +42,8 @@ def _dedupe(indices:set) -> set:
     Remove complex indices when simpler equivalents exist.
     '''
     result = set()
-    for ncol in range(1, max(map(len, indices)) + 1):
+    top = 1 if indices == set() else max(map(len, indices)) 
+    for ncol in range(1, top + 1):
         for columns in indices:
             if len(columns) == ncol:
                 for subcolumns in _factorial(combinations, columns, ncol):
