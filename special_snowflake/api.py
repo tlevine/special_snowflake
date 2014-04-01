@@ -14,6 +14,7 @@ def fromcsv(fp, n_columns = 3, only_adjacent = False, **csv_kwargs):
     return _fromdicts(header, data, n_columns, only_adjacent)
 
 def fromresponse(response, n_columns = 3, only_adjacent = False, **csv_kwargs):
+    'Load from an HTTP response object.'
     fp = io.StringIO(response.text)
     return fromcsv(fp, n_columns = n_columns, only_adjacent = only_adjacent, **csv_kwargs)
 
