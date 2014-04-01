@@ -21,7 +21,6 @@ pink;square;no
 green;square;no
 yellow;square;yes
 ''')
-    fp.seek(0)
     observed = fromcsv(fp, delimiter = ';', n_columns = 1)
     expected = {('color',)}
     n.assert_set_equal(observed, expected)
