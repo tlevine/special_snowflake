@@ -53,5 +53,5 @@ def test_factorial():
 
 def test_too_few_columns():
     observed = _fromdicts_duplicates(f.headers3, f.data3, 8, False)
-    expected = {('b',)}
+    expected = {('b',),('a','b')}
     n.assert_set_equal(observed, expected)

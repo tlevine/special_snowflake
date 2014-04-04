@@ -22,7 +22,7 @@ def _fromdicts(header, data, n_columns, only_adjacent):
 
 def _fromdicts_duplicates(header, data, n_columns, only_adjacent):
     if len(header) < n_columns:
-        raise ValueError('This dataset doesn\'t have enough columns! (%d is less than %d.)' % (len(header), n_columns))
+        n_columns = len(header)
 
     if only_adjacent:
         f = window
