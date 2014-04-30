@@ -1,6 +1,15 @@
-Find primary keys in datasets. ::
+Because datasets are often provided with scant metadata, I want to
+infer some of the conventional metadata without depending on special
+information. One such sort of metadata is the schema of the dataset.
+
+Special snowflake looks for unique identifiers in arbitrary datasets.
+Run it like so. ::
 
     from special_snowflake import fromcsv
     from pprint import pprint
     with open('open-data-index.csv') as fp:
         pprint(fromcsv(csv.DictReader(fp), n_columns = 2, only_adjacent = False))
+
+This program will find all of the combinations of one or two columns
+inside ``open-data-index.csv`` that function as unique indices on the
+full spreadsheet.
