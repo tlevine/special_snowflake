@@ -12,6 +12,10 @@ Run it like so. ::
     route.name, stop.id
     route.number, stop.id, time
 
+By default, you get all of the combinations of up to three columns
+inside ``bus_stops.csv`` that function as unique indices on the
+full spreadsheet.
+
 Or call it from Python! ::
 
     from special_snowflake import fromcsv
@@ -19,6 +23,6 @@ Or call it from Python! ::
     with open('open-data-index.csv') as fp:
         pprint(fromcsv(csv.DictReader(fp), n_columns = 2, only_adjacent = False))
 
-This program will find all of the combinations of one or two columns
+This program finds all of the combinations of one or two columns
 inside ``open-data-index.csv`` that function as unique indices on the
 full spreadsheet.
