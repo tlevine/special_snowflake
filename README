@@ -5,6 +5,15 @@ information. One such sort of metadata is the schema of the dataset.
 Special snowflake looks for unique identifiers in arbitrary datasets.
 Run it like so. ::
 
+    $ snowflake bus_stops.csv
+    route.number, stop.id, n.students
+    time, n.students, location
+    route.name, n.students, location
+    route.name, stop.id
+    route.number, stop.id, time
+
+Or call it from Python! ::
+
     from special_snowflake import fromcsv
     from pprint import pprint
     with open('open-data-index.csv') as fp:
