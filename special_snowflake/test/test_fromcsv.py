@@ -41,3 +41,9 @@ def test_big_window():
 def test_empty_csv():
     fp = StringIO('')
     n.assert_set_equal(fromcsv(fp), set())
+
+def test_dialect():
+    fn = 'budget_2011_par_secteurs_-_autorisations_de_programme_ap.csv'
+    with open(os.path.join('special_snowflake','test','fixtures',fn)) as fp:
+        observed = fromcsv(fp, n_columns = 1, only_adjacent = True)
+    n.assert_set_equal(observed, {('libelle_secteur',)})
