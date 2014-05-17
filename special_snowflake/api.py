@@ -12,8 +12,8 @@ def fromcsv(fp, n_columns = 3, only_adjacent = False, **csv_kwargs):
         return set()
     fp.seek(position, os.SEEK_SET)
 
-    # Detect dialect
-    if 'dialect' not in csv_kwargs:
+    # Detect dialect if no csv stuff is specified
+    if csv_kwargs == {}:
         try:
             csv_kwargs['dialect'] = _dialect(fp)
         except csv.Error:
