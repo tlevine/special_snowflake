@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 from distutils.core import setup
 
-import special_snowflake as s
+import special_snowflake.meta as s
 
 setup(name='special_snowflake',
-    author = 'Thomas Levine',
+    author = s.__author__,
     author_email = '_@thomaslevine.com',
     description = 'Find the unique indices for a dataset',
     url = 'https://github.com/tlevine/special_snwoflake.git',
