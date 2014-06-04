@@ -4,7 +4,7 @@ from distutils.core import setup
 import special_snowflake.meta as s
 
 setup(name='special_snowflake',
-    author = s.__author__,
+    author = 'Thomas Levine',
     author_email = '_@thomaslevine.com',
     description = 'Find the unique indices for a dataset',
     url = 'https://github.com/tlevine/special_snwoflake.git',
@@ -14,6 +14,6 @@ setup(name='special_snowflake',
     packages = ['special_snowflake'],
     install_requires = ['sliding_window'],
     tests_require = ['nose'],
-    version = s.__version__,
+    version = '0.0.9',
     license = 'AGPL',
 )
