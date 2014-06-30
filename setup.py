@@ -9,9 +9,10 @@ setup(name='special_snowflake',
     classifiers = [
         'Intended Audience :: Developers',
     ],
+    scripts = [os.path.join('bin','snowflake')],
     packages = ['special_snowflake'],
     install_requires = ['sliding-window'],
     tests_require = ['nose'],
-    version = '0.0.9',
+    version = '0.0.10',
     license = 'AGPL',
 )
