@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 from distutils.core import setup
 
 setup(name='special_snowflake',
